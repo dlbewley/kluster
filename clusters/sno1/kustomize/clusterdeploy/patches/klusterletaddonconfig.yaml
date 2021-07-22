@@ -1,0 +1,8 @@
+---
+apiVersion: agent.open-cluster-management.io/v1
+kind: KlusterletAddonConfig
+metadata:
+  name: tbd
+spec:
+  clusterName: sno1
+  clusterNamespace: sno1

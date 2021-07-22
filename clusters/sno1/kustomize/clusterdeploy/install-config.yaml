@@ -1,0 +1,33 @@
+apiVersion: v1
+metadata:
+  name: sno1
+baseDomain: lab.bewley.net
+controlPlane:
+  hyperthreading: Enabled
+  name: master
+  replicas: 1
+  platform:
+    vsphere:
+      cpus:  8
+      coresPerSocket:  2
+      memoryMB: 24552
+      osDisk:
+        diskSizeGB: 120
+compute:
+- hyperthreading: Enabled
+  name: 'worker'
+  replicas: 0
+platform:
+  vsphere:
+    vCenter: vcenter.lab.bewley.net
+    username: administrator@vcenter.lab.bewley.net
+    password: guess
+    datacenter: Garden
+    defaultDatastore: VMData-HD
+    cluster: Goat
+    apiVIP: 192.168.4.9
+    ingressVIP: 192.168.4.8
+    network: lab-192-168-4-0-b24
+pullSecret: "" # skip, hive will inject based on it's secrets
+sshKey: |-
+    ssh-rsa AAA...

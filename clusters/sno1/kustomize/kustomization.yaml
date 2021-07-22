@@ -1,0 +1,7 @@
+# apply me after applying clusterdeployment/
+# i will give you fancy console uniqueness, oauth stuff and clusteradmin rights
+
+bases:
+  - lookfeel
+  - oauth
+  - ../../../kustomize/admin

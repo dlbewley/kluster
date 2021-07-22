@@ -1,0 +1,17 @@
+bases:
+  - ../../../../kustomize/lookfeel/
+
+resources:
+  - consolenotification.yaml
+
+generatorOptions:
+  disableNameSuffixHash: true
+
+configmapGenerator:
+- name: console-custom-logo
+  namespace: openshift-config
+  files:
+    - tool-box-60.png
+
+patchesStrategicMerge:
+  - console-patch.yaml

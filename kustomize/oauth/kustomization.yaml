@@ -1,0 +1,21 @@
+resources:
+- oauth.yaml
+- clusterrolebinding.yaml
+
+generatorOptions:
+  disableNameSuffixHash: true
+
+secretGenerator:
+- name: htpasswd
+  namespace: openshift-config
+  files:
+    - htpasswd
+# in overlays per cluster
+#- name: github-oauth
+#  namespace: openshift-config
+#  files:
+#    - clientSecret
+#- name: github-oauth-client-id
+#  namespace: openshift-config
+#  files:
+#    - clientId

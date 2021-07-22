@@ -1,0 +1,8 @@
+---
+apiVersion: hive.openshift.io/v1
+kind: MachinePool
+metadata:
+  name: worker
+spec:
+  clusterDeploymentRef:
+    name: sno1

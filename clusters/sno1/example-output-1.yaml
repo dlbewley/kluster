@@ -1,0 +1,174 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  labels:
+    hive.openshift.io/cluster-deployment-name: sno1
+  name: sno1
+---
+apiVersion: v1
+data:
+  install-config.yaml: |
+    YXBpVmVyc2lvbjogdjEKbWV0YWRhdGE6CiAgbmFtZTogc25vMQpiYXNlRG9tYWluOiBsYW
+    IuYmV3bGV5Lm5ldApjb250cm9sUGxhbmU6CiAgaHlwZXJ0aHJlYWRpbmc6IEVuYWJsZWQK
+    ICBuYW1lOiBtYXN0ZXIKICByZXBsaWNhczogMQogIHBsYXRmb3JtOgogICAgdnNwaGVyZT
+    oKICAgICAgY3B1czogIDgKICAgICAgY29yZXNQZXJTb2NrZXQ6ICAyCiAgICAgIG1lbW9y
+    eU1COiAyNDU1MgogICAgICBvc0Rpc2s6CiAgICAgICAgZGlza1NpemVHQjogMTIwCmNvbX
+    B1dGU6Ci0gaHlwZXJ0aHJlYWRpbmc6IEVuYWJsZWQKICBuYW1lOiAnd29ya2VyJwogIHJl
+    cGxpY2FzOiAwCnBsYXRmb3JtOgogIHZzcGhlcmU6CiAgICB2Q2VudGVyOiB2Y2VudGVyLm
+    xhYi5iZXdsZXkubmV0CiAgICB1c2VybmFtZTogYWRtaW5pc3RyYXRvckB2Y2VudGVyLmxh
+    Yi5iZXdsZXkubmV0CiAgICBwYXNzd29yZDogZ3Vlc3MKICAgIGRhdGFjZW50ZXI6IEdhcm
+    RlbgogICAgZGVmYXVsdERhdGFzdG9yZTogVk1EYXRhLUhECiAgICBjbHVzdGVyOiBHb2F0
+    CiAgICBhcGlWSVA6IDE5Mi4xNjguNC45CiAgICBpbmdyZXNzVklQOiAxOTIuMTY4LjQuOA
+    ogICAgbmV0d29yazogbGFiLTE5Mi0xNjgtNC0wLWIyNApwdWxsU2VjcmV0OiAiIiAjIHNr
+    aXAsIGhpdmUgd2lsbCBpbmplY3QgYmFzZWQgb24gaXQncyBzZWNyZXRzCnNzaEtleTogfC
+    0KICAgIHNzaC1yc2EgQUFBLi4uCg==
+kind: Secret
+metadata:
+  labels:
+    hive.openshift.io/cluster-deployment-name: sno1
+  name: install-config
+  namespace: sno1
+type: Opaque
+---
+apiVersion: v1
+data:
+  .dockerconfigjson: e30=
+kind: Secret
+metadata:
+  labels:
+    hive.openshift.io/cluster-deployment-name: sno1
+  name: pull-secret
+  namespace: sno1
+type: kubernetes.io/dockerconfigjson
+---
+apiVersion: v1
+data:
+  ssh-privatekey: |
+    LS0tLS1CRUdJTiBPUEVOU1NIIFBSSVZBVEUgS0VZLS0tLS0KYjNCbGJuTnphQzFyWlhrdG
+    RqRUFBQUFBQkc1dmJtVUFBQUFFYm05dVpRQUFBQUFBQUFBQkFBQUJGd0FBQUFkemMyZ3Rj
+    bgouLi4KL0dCWkg1N2FPV05reVEzRUN3QUFBQXhoWTIxQWIyRnJMVEUxTURnQkFnTUVCUT
+    09Ci0tLS0tRU5EIE9QRU5TU0ggUFJJVkFURSBLRVktLS0tLQo=
+kind: Secret
+metadata:
+  labels:
+    hive.openshift.io/cluster-deployment-name: sno1
+  name: ssh-private-key
+  namespace: sno1
+type: Opaque
+---
+apiVersion: v1
+data:
+  .cacert: |
+    LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUVOekNDQXgrZ0F3SUJBZ0lKQU1EcE
+    NCajgvTC9qTUEwR0NTcUdTSWIzRFFFQkN3VUFNSUdtTVFzd0NRWUQKLi4uCnNaUEZpK01j
+    aGdDbWk2RnNSekVuVmdsdlVlRGdmZ2d0NW1pYgotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS
+    0tCg==
+kind: Secret
+metadata:
+  labels:
+    hive.openshift.io/cluster-deployment-name: sno1
+  name: vsphere-certs
+  namespace: sno1
+type: Opaque
+---
+apiVersion: v1
+data:
+  password: Z3Vlc3M=
+  username: YWRtaW5pc3RyYXRvckB2Y2VudGVyLmxhYi5iZXdsZXkubmV0
+kind: Secret
+metadata:
+  labels:
+    hive.openshift.io/cluster-deployment-name: sno1
+  name: vsphere-creds
+  namespace: sno1
+type: Opaque
+---
+apiVersion: agent.open-cluster-management.io/v1
+kind: KlusterletAddonConfig
+metadata:
+  labels:
+    hive.openshift.io/cluster-deployment-name: sno1
+  name: sno1
+  namespace: sno1
+spec:
+  applicationManager:
+    enabled: true
+  certPolicyController:
+    enabled: true
+  clusterLabels:
+    cloud: vSphere
+    vendor: OpenShift
+  clusterName: sno1
+  clusterNamespace: sno1
+  iamPolicyController:
+    enabled: true
+  policyController:
+    enabled: true
+  searchCollector:
+    enabled: true
+  version: 2.2.0
+---
+apiVersion: cluster.open-cluster-management.io/v1
+kind: ManagedCluster
+metadata:
+  labels:
+    cloud: vSphere
+    hive.openshift.io/cluster-deployment-name: sno1
+    location: oak
+    name: sno1
+    vendor: OpenShift
+  name: sno1
+  namespace: sno1
+spec:
+  hubAcceptsClient: true
+---
+apiVersion: hive.openshift.io/v1
+kind: ClusterDeployment
+metadata:
+  labels:
+    cloud: vSphere
+    hive.openshift.io/cluster-deployment-name: sno1
+    vendor: OpenShift
+  name: sno1
+  namespace: sno1
+spec:
+  baseDomain: lab.bewley.net
+  clusterName: sno1
+  controlPlaneConfig:
+    servingCertificates: {}
+  installAttemptsLimit: 2
+  installed: false
+  platform:
+    vsphere:
+      certificatesSecretRef:
+        name: vsphere-certs
+      cluster: Goat
+      credentialsSecretRef:
+        name: vsphere-creds
+      datacenter: Garden
+      defaultDatastore: VMData-HD
+      network: lab-192-168-4-0-b24
+      vCenter: vcenter.lab.bewley.net
+  provisioning:
+    imageSetRef:
+      name: img4.8.0-x86-64-appsub
+    installConfigSecretRef:
+      name: install-config
+    sshPrivateKeySecretRef:
+      name: ssh-private-key
+  pullSecretRef:
+    name: pull-secret
+---
+apiVersion: hive.openshift.io/v1
+kind: MachinePool
+metadata:
+  labels:
+    hive.openshift.io/cluster-deployment-name: sno1
+  name: worker
+  namespace: sno1
+spec:
+  clusterDeploymentRef:
+    name: sno1
+  name: worker
+  platform: {}
+  replicas: 0
