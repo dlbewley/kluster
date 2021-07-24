@@ -2,10 +2,16 @@
 apiVersion: hive.openshift.io/v1
 kind: MachinePool
 metadata:
-  name: worker
+  name: tbd
 spec:
   clusterDeploymentRef:
     name: tbd
   name: worker
-  platform: {}
+  platform:
+    vsphere:
+      cpus:  4
+      coresPerSocket:  2
+      memoryMB:  16384
+      osDisk:
+        diskSizeGB: 120
   replicas: 0

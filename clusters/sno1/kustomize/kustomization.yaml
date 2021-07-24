@@ -1,5 +1,8 @@
-# apply me after applying clusterdeployment/
-# i will give you fancy console uniqueness, oauth stuff and clusteradmin rights
+# Kustomize cluster config after deployment.
+# Apply me after applying clusterdeploy
+# I will give you some basic settings like fancy console uniqueness, htpassword auth and maybe github auth and also clusteradmin rights
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
 
 bases:
   - lookfeel
