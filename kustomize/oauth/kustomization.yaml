@@ -1,6 +1,9 @@
+# Oauth base to setup htpasswd auth
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
 resources:
 - oauth.yaml
-- clusterrolebinding.yaml
 
 generatorOptions:
   disableNameSuffixHash: true
@@ -10,6 +13,7 @@ secretGenerator:
   namespace: openshift-config
   files:
     - htpasswd
+
 # in overlays per cluster
 #- name: github-oauth
 #  namespace: openshift-config
