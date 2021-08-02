@@ -1,0 +1,4 @@
+[[rules]]
+  [rules.allowlist]
+    description = "example default password"
+    files = ['''htpasswd''']
