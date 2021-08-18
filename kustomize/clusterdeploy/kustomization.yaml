@@ -6,19 +6,30 @@ generatorOptions:
   disableNameSuffixHash: true
 
 secretGenerator:
-- name: ssh-private-key
-  files:
-  - ssh-privatekey
-- name: pull-secret
-  type: kubernetes.io/dockerconfigjson
-  files:
-  - .dockerconfigjson
-- name: vsphere-creds
-  envs:
-  - .env.vsphere
-- name: vsphere-certs
-  files:
-  - .cacert
+  - name: aws-creds
+    envs:
+      - .env.aws
+
+  - name: azure-creds
+    files:
+      - osServicePrincipal.json
+
+  - name: pull-secret
+    type: kubernetes.io/dockerconfigjson
+    files:
+      - .dockerconfigjson
+
+  - name: ssh-private-key
+    files:
+      - ssh-privatekey
+
+  - name: vsphere-creds
+    envs:
+      - .env.vsphere
+
+  - name: vsphere-certs
+    files:
+      - .cacert
 
 resources:
 - klusterletaddonconfig.yaml
